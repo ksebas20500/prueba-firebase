@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Autómatas Finitos | IEEE Format Ready</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Cytoscape.js for graph visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>Simulador de Autómatas Finitos Interactivos</h1>
+        <p class="subtitle">DFA / NFA Simulator with ε-Transitions</p>
+    </header>
+
+    <main class="app-container">
+        <!-- Sidebar: Control Panel -->
+        <aside class="control-panel">
+            <section class="config-section">
+                <h2><span class="icon">⚙️</span> Configuración</h2>
+                
+                <div class="input-group">
+                    <label for="states-input">Estados (Q) - ej: q0,q1,q2</label>
+                    <input type="text" id="states-input" placeholder="q0,q1,q2" value="q0,q1,q2">
+                </div>
+
+                <div class="input-group">
+                    <label for="alphabet-input">Alfabeto (Σ) - ej: 0,1</label>
+                    <input type="text" id="alphabet-input" placeholder="0,1" value="0,1">
+                </div>
+
+                <div class="input-group">
+                    <label for="initial-state-input">Estado Inicial (q₀)</label>
+                    <input type="text" id="initial-state-input" placeholder="q0" value="q0">
+                </div>
+
+                <div class="input-group">
+                    <label for="final-states-input">Estados Finales (F)</label>
+                    <input type="text" id="final-states-input" placeholder="q2" value="q2">
+                </div>
+
+                <div class="transition-builder">
+                    <h3>Transiciones (δ)</h3>
+                    <div class="inline-inputs">
+                        <input type="text" id="trans-from" placeholder="Desde" class="small-input">
+                        <input type="text" id="trans-symbol" placeholder="Símbolo (vacio para ε)" class="small-input">
+                        <input type="text" id="trans-to" placeholder="Hacia" class="small-input">
+                        <button id="add-transition" class="btn-secondary">Añadir</button>
+                    </div>
+                    <ul id="transitions-list" class="scroll-list"></ul>
+                </div>
+
+                <button id="apply-config" class="btn-primary full-width">Aplicar Configuración</button>
+            </section>
+
+            <section class="simulation-section">
+                <h2><span class="icon">🚀</span> Simulación</h2>
+                <div class="input-group">
+                    <label for="input-string">Cadena a evaluar</label>
+                    <input type="text" id="input-string" placeholder="ej: 0101">
+                </div>
+                
+                <div class="controls">
+                    <button id="btn-play" class="btn-control">▶ Play</button>
+                    <button id="btn-pause" class="btn-control">⏸ Pausa</button>
+                    <button id="btn-next" class="btn-control">⏭ Paso</button>
+                    <button id="btn-reset" class="btn-control">🔄 Reset</button>
+                </div>
+
+                <div id="status-display" class="status-box">
+                    Esperando cadena...
+                </div>
+            </section>
+        </aside>
+
+        <!-- Main Content: Canvas -->
+        <section class="canvas-area">
+            <div id="cy"></div>
+            <div class="legend">
+                <span class="legend-item"><i class="dot initial"></i> Inicial</span>
+                <span class="legend-item"><i class="dot final"></i> Final</span>
+                <span class="legend-item"><i class="dot active"></i> Activo</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 Simulador TC - Prototipo para Artículo IEEE</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
